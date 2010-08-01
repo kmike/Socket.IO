@@ -609,7 +609,7 @@ io.util = {
 	
 	Socket.prototype.fire = function(name, args){
 		if (name in this._events){
-			for (var i in this._events[name])
+			for (var i = 0, l = this._events[name].length; i < l; i++)
 				this._events[name][i].apply(this, args);
 		}
 		return this;
@@ -617,7 +617,7 @@ io.util = {
 	
 	Socket.prototype.removeEvent = function(name, fn){
 		if (name in this._events){
-			for (var i in this._events[name]){
+			for (var i = 0; i < this._events[name].length; i++){
 				for (var a = 0, l = this._events[name].length; a < l; a++)
 					if (this._events[name][a] == fn) this._events[name].splice(a, 1);
 			}
